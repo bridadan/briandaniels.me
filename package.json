@@ -1,0 +1,14 @@
+{
+  "name": "briandaniels.me",
+  "version": "0.1.0",
+  "description": "Source code to my personal website",
+  "contributors": [
+    {
+      "name": "Brian Daniels",
+      "email": "brianddaniels@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "metalsmith": "^0.8.0"
+  }
+}
