@@ -1,0 +1,15 @@
+{{> header}}
+{{#each collections.blog}}
+<article>
+  <header>
+    <h2><a href="/{{this.path}}">{{this.title}}</a></h2>
+    <time>{{blog-date this.date}}</time>
+  </header>
+  <section>
+    {{{this.excerpt}}}
+    <p><a href="/{{this.path}}">READ THE FULL ARTICLE</a></p>
+  </section>
+</article>
+{{/each}}
+
+{{>footer}}

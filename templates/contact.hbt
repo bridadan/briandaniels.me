@@ -1,0 +1,7 @@
+{{> header}}
+
+<article>
+  {{{contents}}}
+</article>
+
+{{> footer}}
