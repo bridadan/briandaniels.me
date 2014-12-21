@@ -1,0 +1,7 @@
+{{> header}}
+
+<article>
+  {{> soundcloud song-id}}
+</article>
+
+{{>footer}}

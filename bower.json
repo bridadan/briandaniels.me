@@ -1,0 +1,8 @@
+{
+  "name": "briandaniels.me",
+  "version": "0.1.0",
+  "description": "Personal site for Brian Daniels",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {}
+}

@@ -1,0 +1,31 @@
+{{> header}}
+
+<article>
+  {{{contents}}}
+</article>
+
+<div id="projects-container">
+  <div class="grid-sizer"></div>
+{{#each projects}}
+  <div class="item {{_classNames}}">
+    <div class="padding">
+      {{project this}}
+    </div>
+  </div>
+{{/each}}
+</div>
+
+<script src="/js/isotope.pkgd.js"></script>
+<script>
+  var container = document.querySelector('#projects-container');
+  // init
+  var iso = new Isotope( container, {
+    // options
+    itemSelector: '.item',
+    sortBy: 'original-order',
+    masonry: {
+      columnWidth: '.grid-sizer'
+    }
+  });
+</script>
+{{> footer}}

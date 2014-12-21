@@ -1,0 +1,7 @@
+<a href="/{{path}}">
+  <div class="info" style="background-image: url('{{thumbnail}}')">
+    <div class="overlay">
+      <h2>{{title}}</h2>
+    </div>
+  </div>
+</a>

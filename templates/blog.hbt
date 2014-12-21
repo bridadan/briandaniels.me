@@ -1,5 +1,5 @@
 {{> header}}
-{{#each collections.blog}}
+{{#each this.pagination.files}}
 <article>
   <header>
     <h2><a href="/{{this.path}}">{{this.title}}</a></h2>
@@ -12,4 +12,20 @@
 </article>
 {{/each}}
 
-{{>footer}}
+{{#if this.pagination}}
+<nav class="pagination cf">
+  {{#if this.pagination.next}}
+  <div class="left">
+    <a href="/{{this.pagination.next.path}}">&lt; OLDER POSTS</a>
+  </div>
+  {{/if}}
+
+  {{#if this.pagination.previous}}
+  <div class="right">
+    <a href="/{{this.pagination.previous.path}}">NEWER POSTS &gt;</a>
+  </div>
+  {{/if}}
+</nav>
+{{/if}}
+
+{{> footer}}

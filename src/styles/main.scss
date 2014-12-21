@@ -2,7 +2,7 @@ $background-color: #314B5B;
 $main-color: #79B7E1;
 $highlight-color: #DB9634;
 $shadow-color: #16405B;
-$nav-color: #3498db;
+$nav-color: #429DD4;
 
 body {
   background: $background-color;
@@ -113,7 +113,7 @@ a {
   cursor: pointer;
 }
 
-nav {
+header nav {
   text-align: right;
 
   a {
@@ -196,6 +196,57 @@ p {
   padding: 0 1em;
 }
 
+#projects-container {
+  .grid-sizer, .item {
+    width: 50%;
+
+    a, a:hover {
+      text-decoration: none;
+    }
+  }
+
+  .new {
+    width: 100%;
+  }
+
+  .info {
+    height: 15em;
+    line-height: 15em;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(34, 34, 34, 0);
+      transition: 0.5s;
+    }
+
+    h2 {
+      opacity: 0;
+      text-align: center;
+      color: $highlight-color;
+      text-shadow: -0.05em 0.05em $shadow-color;
+      margin: 0;
+      font-size: 450%;
+      transition: 0.5s;
+    }
+  }
+
+  .info:hover {
+    .overlay {
+      background: rgba(34, 34, 34, 0.75);
+    }
+
+    h2 {
+      opacity: 1;
+    }
+  }
+}
+
 article {
   margin-top: 1em;
 
@@ -230,8 +281,20 @@ input[type=text] {
   margin: 0;
 }
 
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
 label {
   font-weight: 400;
+}
+
+.r-img {
+  max-width: 100%;
 }
 
 @media (min-width: 48em) {
@@ -239,7 +302,7 @@ label {
     display: none;
   }
 
-  nav ul {
+  header nav ul {
     display: block;
   }
 }

@@ -1,6 +1,6 @@
 ---
 title: Contact
-template: contact.hbt
+template: page.hbt
 ---
 
 <section class="panel">
