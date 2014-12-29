@@ -82,7 +82,7 @@ Handlebars.registerHelper('limit', function( collection, limit, start ) {
   }
 });
 
-Metalsmith(__dirname) 
+Metalsmith(__dirname)
   .use(sass({ outputStyle: 'compressed' }))
   .use(drafts())
   .use(findTemplate(collectionTemplates))
@@ -121,37 +121,44 @@ Metalsmith(__dirname)
     relative: false
   }))
   .use(function (files, metalsmith, done) {
-    var collections = ['electronics', 'music'];
+    var projects = {};
 
-    metalsmith.data.projects = [];
+    projects.collections = [
+      {id: 'electronics', name: 'Electronics'},
+    {id: 'music', name: 'Music'}
+    ];
 
-    collections.forEach(function(collection) {
-      metalsmith.data.collections[collection].forEach(function(project) {
-        project._collection = collection;
-        metalsmith.data.projects.push(project);
+    projects.items = [];
+
+    projects.collections.forEach(function(collection) {
+      metalsmith.data.collections[collection.id].forEach(function(item) {
+        item._collection = collection.id;
+        projects.items.push(item);
       });
     });
 
     // Sort projects most recent first
-    metalsmith.data.projects.sort(function(a, b) {
+    projects.items.sort(function(a, b) {
       return b.date.getTime()-a.date.getTime();
     });
 
     // Populate class name fields. Add 'new' class for newest project
-    for (var i = 0; i < metalsmith.data.projects.length; i++) {
-      metalsmith.data.projects[i]._classNames = metalsmith.data.projects[i]._collection;
-      
+    for (var i = 0; i < projects.items.length; i++) {
+      projects.items[i]._classNames = projects.items[i]._collection;
+
       if (i == 0) {
-        metalsmith.data.projects[i]._classNames += ' new';
+        projects.items[i]._classNames += ' new';
       }
     }
+
+    metalsmith.data.projects = projects;
 
     done();
   })
   .use(templates('handlebars'))
   .destination('./build')
   .build(function(err) {
-    if (err) { 
+    if (err) {
       throw err;
     }
   });

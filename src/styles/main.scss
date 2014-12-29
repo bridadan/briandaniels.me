@@ -35,6 +35,10 @@ body {
   padding: 0.25em;
 }
 
+.margin-top {
+  margin-top: 1em;
+}
+
 .highlight {
   color: $highlight-color;
 }
@@ -72,7 +76,7 @@ a {
     opacity: 0.8;
   }
 }
- 
+
 .button {
   text-decoration: none;
   font-size: 150%;
@@ -85,6 +89,26 @@ a {
   margin: 0 0.25em;
   box-shadow: -4px 4px $shadow-color;
   text-shadow: -0.1em 0.1em $shadow-color;
+
+  &:hover {
+    background-color: #F0A439;
+    opacity: 1;
+  }
+}
+
+button {
+  border: 0;
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 4px;
+  background-color: $highlight-color;
+  padding: 0.7em;
+  margin: 0 0.25em;
+  box-shadow: -4px 4px $shadow-color;
+  text-shadow: -0.1em 0.1em $shadow-color;
+  outline: 0;
+  cursor: pointer;
 
   &:hover {
     background-color: #F0A439;
@@ -137,7 +161,7 @@ header nav {
     display: inline;
     list-style-type: none;
 
-    &.active a {
+    &.active a, &.active a:hover {
       color: rgba(0,0,0,0.87);
     }
   }
@@ -253,7 +277,7 @@ article {
   header {
     h2 {
       font-size: 200%;
-      font-weight: normal; 
+      font-weight: normal;
       text-shadow: -0.1em 0.1em $shadow-color;
       color: $highlight-color;
       margin-bottom: 0.3em;
@@ -295,6 +319,28 @@ label {
 
 .r-img {
   max-width: 100%;
+}
+
+#project-filter-buttons {
+  .active {
+    text-decoration: underline;
+  }
+  
+  .electronics {
+    background-color: #008300;
+
+    &:hover {
+      background-color: #009000;
+    }
+  }
+
+  .music {
+    background-color: #ea1545;
+
+    &:hover {
+      background-color: #f23d66;
+    }
+  }
 }
 
 @media (min-width: 48em) {
