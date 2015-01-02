@@ -9,6 +9,7 @@ var Metalsmith = require('metalsmith'),
   moment = require('moment'),
   excerpts = require('metalsmith-excerpts'),
   drafts = require('metalsmith-drafts'),
+  metallic = require('metalsmith-metallic'),
   fs = require('fs');
 
 var collectionTemplates = {
@@ -103,6 +104,7 @@ Metalsmith(__dirname)
       reverse: true
     }
   }))
+  .use(metallic())
   .use(markdown())
   .use(excerpts())
   .use(paginate({
@@ -156,6 +158,7 @@ Metalsmith(__dirname)
     done();
   })
   .use(templates('handlebars'))
+  .use()
   .destination('./build')
   .build(function(err) {
     if (err) {

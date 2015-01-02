@@ -3,18 +3,50 @@ $main-color: #79B7E1;
 $highlight-color: #DB9634;
 $shadow-color: #16405B;
 $nav-color: #429DD4;
+$link-color: #2E81B8;
+
+html {
+  font-size: 16px;
+}
 
 body {
   background: $background-color;
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  font-size: 16px;
+  font-size: 1.0rem;
   color: rgba(0,0,0,0.87);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+h4, h5, h6 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+
+
 .landing {
-  max-width: 56em;
-  margin: 1em auto;
+  max-width: 56rem;
+  margin: 1rem auto;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', serif;
+  }
 }
 
 .me {
@@ -28,15 +60,15 @@ body {
 }
 
 .contact-pics img {
-  height: 3.6em;
+  height: 3.5rem;
 }
 
 .padding {
-  padding: 0.25em;
+  padding: 0.25rem;
 }
 
 .margin-top {
-  margin-top: 1em;
+  margin-top: 1rem;
 }
 
 .highlight {
@@ -47,15 +79,17 @@ body {
   color: $main-color;
 
   h1 {
-    text-shadow: -0.05em 0.05em $shadow-color;
+    text-shadow: -0.25rem 0.25rem $shadow-color;
     margin: 0;
     font-size: 450%;
+    font-weight: 300;
   }
 
   h2 {
-    text-shadow: -0.07em 0.07em $shadow-color;
-    margin: 0.5em 0;
+    text-shadow: -0.2rem 0.2rem $shadow-color;
+    margin: 0.5rem 0;
     font-size: 250%;
+    font-weight: 300;
 
     a {
       color: $highlight-color;
@@ -64,13 +98,14 @@ body {
 
   h3 {
     font-size: 150%;
-    margin: 0.5em 0 0 0;
+    margin: 0.5rem 0 0 0;
+    font-weight: 300;
   }
 }
 
 a {
   color: inherit;
-  text-decoration: underline;
+  text-decoration: none;
 
   &:hover, &:visited:hover, &:focus {
     opacity: 0.8;
@@ -79,16 +114,16 @@ a {
 
 .button {
   text-decoration: none;
-  font-size: 150%;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #fff;
   border-radius: 4px;
   background-color: $highlight-color;
-  padding: 0.7em;
+  padding: 1rem;
   display: block;
-  margin: 0 0.25em;
+  margin: 0 0.25rem;
   box-shadow: -4px 4px $shadow-color;
-  text-shadow: -0.1em 0.1em $shadow-color;
+  text-shadow: -0.1rem 0.1rem $shadow-color;
 
   &:hover {
     background-color: #F0A439;
@@ -103,10 +138,10 @@ button {
   color: #fff;
   border-radius: 4px;
   background-color: $highlight-color;
-  padding: 0.7em;
-  margin: 0 0.25em;
+  padding: 0.7rem;
+  margin: 0 0.25rem;
   box-shadow: -4px 4px $shadow-color;
-  text-shadow: -0.1em 0.1em $shadow-color;
+  text-shadow: -0.1rem 0.1rem $shadow-color;
   outline: 0;
   cursor: pointer;
 
@@ -117,17 +152,17 @@ button {
 }
 
 #container {
-  max-width: 60em;
+  max-width: 60rem;
   margin: 0 auto;
 
   > header {
     background-color: $nav-color;
     box-shadow: 0px 6px 0px -3px $shadow-color;
-    line-height: 3.5em;
+    line-height: 3.5rem;
 
     span {
       float: left;
-      padding: 0 1em;
+      padding: 0 1rem;
     }
   }
 }
@@ -143,7 +178,7 @@ header nav {
   a {
     color: rgba(255,255,255,0.54);
     text-decoration: none;
-    padding: 1em;
+    padding: 1rem;
 
     &:hover, &:visited:hover, &:focus {
       background: none;
@@ -168,13 +203,13 @@ header nav {
 }
 
 .main {
-  //max-width: 56em;
-  padding: 0 1em;
+  //max-width: 56rem;
+  padding: 0 1rem;
 }
 
 p {
-  padding: 1em 0;
-  line-height: 1.5em;
+  padding: 1rem 0;
+  line-height: 1.75rem;
 }
 
 .center {
@@ -204,7 +239,7 @@ p {
 }
 
 .g-u-1-1 {
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
   width: 100%;
 }
 
@@ -214,10 +249,10 @@ p {
 }
 
 .panel {
-  margin: 0.5em 0;
+  margin: 0.5rem 0;
   background: #C5D9E6;
-  box-shadow: -0.2em 0.2em $shadow-color;
-  padding: 0 1em;
+  box-shadow: -0.2rem 0.2rem $shadow-color;
+  padding: 0 1rem;
 }
 
 #projects-container {
@@ -234,8 +269,8 @@ p {
   }
 
   .info {
-    height: 15em;
-    line-height: 15em;
+    height: 15rem;
+    line-height: 15rem;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -249,13 +284,12 @@ p {
       transition: 0.5s;
     }
 
-    h2 {
+    h1 {
       opacity: 0;
       text-align: center;
       color: $highlight-color;
-      text-shadow: -0.05em 0.05em $shadow-color;
+      text-shadow: -0.20rem 0.20rem $shadow-color;
       margin: 0;
-      font-size: 450%;
       transition: 0.5s;
     }
   }
@@ -265,22 +299,25 @@ p {
       background: rgba(34, 34, 34, 0.75);
     }
 
-    h2 {
+    h1 {
       opacity: 1;
     }
   }
 }
 
 article {
-  margin-top: 1em;
+  margin-top: 1rem;
+  font-family: 'Droid Serif', serif;
 
   header {
-    h2 {
-      font-size: 200%;
-      font-weight: normal;
-      text-shadow: -0.1em 0.1em $shadow-color;
+    h1 {
+      text-shadow: -0.1rem 0.1rem $shadow-color;
       color: $highlight-color;
-      margin-bottom: 0.3em;
+      margin-bottom: 0.3rem;
+
+      a {
+        text-decoration: none;
+      }
     }
 
     time {
@@ -290,10 +327,29 @@ article {
   }
 
   section {
-    margin: 0.5em 0;
+    margin: 0.5rem 0;
     background: #C5D9E6;
-    box-shadow: -0.2em 0.2em $shadow-color;
-    padding: 0 1em;
+    box-shadow: -0.2rem 0.2rem $shadow-color;
+    padding: 0 1rem;
+
+    a {
+      font-family: 'Roboto Slab', serif;
+      color: #1F75A9;
+    }
+  }
+
+  pre {
+    font-family: monospace;
+    font-size: 0.9rem;
+
+    code {
+      display: block;
+      border-radius: 0.5em;
+      padding: 0.5em;
+      overflow-x: auto;
+      background: #f8f8f8;
+      color: #333;
+    }
   }
 }
 
@@ -301,7 +357,7 @@ input[type=text] {
   font-size: inherit;
   font-weight: inherit;
   font-family: inherit;
-  padding: 0.25em;
+  padding: 0.25rem;
   margin: 0;
 }
 
@@ -325,7 +381,7 @@ label {
   .active {
     text-decoration: underline;
   }
-  
+
   .electronics {
     background-color: #008300;
 
@@ -343,7 +399,7 @@ label {
   }
 }
 
-@media (min-width: 48em) {
+@media (min-width: 48rem) {
   #menu-toggle {
     display: none;
   }
@@ -353,7 +409,7 @@ label {
   }
 }
 
-@media (min-width: 35.5em) {
+@media (min-width: 35.5rem) {
   .g-u-1-1 {
     margin: 0;
   }

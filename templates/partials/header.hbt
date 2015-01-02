@@ -7,7 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="/styles/reset.css">
-  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'> 
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Roboto+Slab:400,700|Roboto' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
   <link rel="stylesheet" type="text/css" href="/styles/main.css">
 </head>
 <body>
@@ -23,6 +24,6 @@
           <li class="{{nav-active title 'Blog'}}"><a href="/blog">BLOG</a></li>
           <li class="{{nav-active title 'Contact'}}"><a href="/contact">CONTACT</a></li>
         </ul>
-      </nav> 
+      </nav>
     </header>
   <section class="main">
