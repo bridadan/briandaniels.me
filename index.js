@@ -93,7 +93,7 @@ Metalsmith(__dirname)
   .use(function (files, metalsmith, done) {
     var projects = { items: [] },
       types = {},
-      pattern = new RegExp('content/projects/[^/]*/.*'),
+      pattern = new RegExp('content/projects/.*/.*'),
       item,
       folders,
       type;
@@ -151,7 +151,7 @@ Metalsmith(__dirname)
 
     done();
   })
-  .use(ignore('content/projects/*'))
+  .use(ignore(['content/projects/*', 'content/projects/*/*']))
   .use(drafts())
   .use(findTemplate(collectionTemplates))
   .use(collections({
