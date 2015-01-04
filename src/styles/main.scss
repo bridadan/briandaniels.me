@@ -19,6 +19,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto Slab', serif;
   font-weight: bold;
+  padding: 0.5em 0;
 }
 
 h1 {
@@ -131,9 +132,10 @@ a {
   }
 }
 
-button {
+button, input[type=submit] {
   border: 0;
   text-decoration: none;
+  font-size: inherit;
   font-weight: bold;
   color: #fff;
   border-radius: 4px;
@@ -353,12 +355,18 @@ article {
   }
 }
 
-input[type=text] {
-  font-size: inherit;
-  font-weight: inherit;
+input[type=text], input[type=email], textarea {
   font-family: inherit;
+  display: block;
+  width: 100%;
+  max-width: 30rem;
   padding: 0.25rem;
-  margin: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 10em;
 }
 
 .left {
@@ -408,6 +416,10 @@ label {
       max-height: 25rem;
     }
   }
+}
+
+form {
+  font-family: 'Roboto', sans-serif;
 }
 
 @media (min-width: 48rem) {
