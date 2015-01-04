@@ -14,8 +14,13 @@ var Metalsmith = require('metalsmith'),
 
 var collectionTemplates = {
   posts: "post.hbt",
-  electronics: "page.hbt",
+  electronics: "project.hbt",
   music: "music.hbt"
+};
+
+var projectTileTemplates = {
+  electronics: "project_tiles/electronics.hbt",
+  music: "project_tiles/music.hbt"
 };
 
 var findTemplate = function(templates) {
@@ -44,6 +49,31 @@ var findTemplate = function(templates) {
   };
 };
 
+var filterByPattern = function(options) {
+  var pattern = new RegExp(options.pattern);
+
+  return function(files, metalsmith, done) {
+    var filteredFiles = {};
+    var reallyDone = function() {
+      console.log('finished!');
+      done();
+    }
+
+    for (var file in files) {
+      if (pattern.test(file)) {
+        filteredFiles[file] = files[file];
+      }
+    }
+
+    console.log(filteredFiles);
+
+    var func = options.func();
+
+
+    func(filteredFiles, metalsmith, reallyDone);
+  }
+}
+
 Handlebars.registerHelper('debug', function(data) {
   console.log(data);
 });
@@ -63,7 +93,7 @@ Handlebars.registerHelper('blog-date', function(date) {
 });
 
 Handlebars.registerHelper('project', function(project) {
-  var template = Handlebars.compile(fs.readFileSync(__dirname + '/templates/projects/' + project.collection + '.hbt', 'utf8'));
+  var template = Handlebars.compile(fs.readFileSync(__dirname + '/templates/' + projectTileTemplates[project.collection], 'utf8'));
   return new Handlebars.SafeString(template(project));
 });
 
@@ -119,8 +149,8 @@ Metalsmith(__dirname)
     }
   }))
   .use(permalinks({
-    pattern: ':collection/:title',
-    relative: false
+        pattern: ':collection/:title',
+        relative: false
   }))
   .use(function (files, metalsmith, done) {
     var projects = {};
@@ -135,6 +165,11 @@ Metalsmith(__dirname)
     projects.collections.forEach(function(collection) {
       metalsmith.data.collections[collection.id].forEach(function(item) {
         item._collection = collection.id;
+
+        if (item.postUrl) {
+          item._post = '/posts/' + item.postUrl
+        }
+
         projects.items.push(item);
       });
     });

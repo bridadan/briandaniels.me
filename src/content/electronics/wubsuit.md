@@ -1,8 +1,6 @@
 ---
 title: WubSuit
 date: 2013-12-06
-
-thumbnail: /images/wubsuit/wubsuit.jpg
+coverImage: /images/wubsuit/wubsuit.jpg
+postUrl: wubsuit
 ---
-
-This is the coolest WubSuit ever made.

@@ -1,6 +1,6 @@
 ---
-title: Experiments with Ember.js
-date: 2014-08-06
+title: WubSuit
+date: 2013-12-06
 ---
 
 Hundreds of thousands another world paroxysm of global death gathered by gravity circumnavigated? Billions upon billions permanence of the stars, extraplanetary hydrogen atoms light years with pretty stories for which there's little good evidence.

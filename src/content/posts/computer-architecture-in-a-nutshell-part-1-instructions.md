@@ -1,6 +1,7 @@
 ---
 title: "Computer Architecture In A Nutshell Part 1: Instructions"
 date: 2014-12-25
+draft: true
 ---
 
 I thought a brief overview of computer architecture would help people who are interested in emulators, embedded systems, or just computers in general.

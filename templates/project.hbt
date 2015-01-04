@@ -1,0 +1,16 @@
+{{> header}}
+
+<article class="project">
+  <header>
+    <h1><a href="/{{path}}">{{title}}</a></h1>
+    <time>{{blog-date date}}</time>
+  </header>
+  <div class="cover">
+    <img src="{{coverImage}}">
+  </div>
+  <section>
+    {{{contents}}}
+  </section>
+</article>
+
+{{>footer}}

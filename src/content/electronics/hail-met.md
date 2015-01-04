@@ -1,8 +1,6 @@
 ---
 title: Hail-Met
 date: 2014-12-04
-
-thumbnail: /images/hail-met/hail-met.jpg
+coverImage: /images/hail-met/hail-met.jpg
+postUrl: hail-met
 ---
-
-Awesome hail-met project.
