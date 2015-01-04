@@ -10,17 +10,14 @@ var Metalsmith = require('metalsmith'),
   excerpts = require('metalsmith-excerpts'),
   drafts = require('metalsmith-drafts'),
   metallic = require('metalsmith-metallic'),
+  msj = require('metalsmith-json'),
+  ignore = require('metalsmith-ignore'),
   fs = require('fs');
 
 var collectionTemplates = {
   posts: "post.hbt",
   electronics: "project.hbt",
   music: "music.hbt"
-};
-
-var projectTileTemplates = {
-  electronics: "project_tiles/electronics.hbt",
-  music: "project_tiles/music.hbt"
 };
 
 var findTemplate = function(templates) {
@@ -49,31 +46,6 @@ var findTemplate = function(templates) {
   };
 };
 
-var filterByPattern = function(options) {
-  var pattern = new RegExp(options.pattern);
-
-  return function(files, metalsmith, done) {
-    var filteredFiles = {};
-    var reallyDone = function() {
-      console.log('finished!');
-      done();
-    }
-
-    for (var file in files) {
-      if (pattern.test(file)) {
-        filteredFiles[file] = files[file];
-      }
-    }
-
-    console.log(filteredFiles);
-
-    var func = options.func();
-
-
-    func(filteredFiles, metalsmith, reallyDone);
-  }
-}
-
 Handlebars.registerHelper('debug', function(data) {
   console.log(data);
 });
@@ -93,7 +65,7 @@ Handlebars.registerHelper('blog-date', function(date) {
 });
 
 Handlebars.registerHelper('project', function(project) {
-  var template = Handlebars.compile(fs.readFileSync(__dirname + '/templates/' + projectTileTemplates[project.collection], 'utf8'));
+  var template = Handlebars.compile(fs.readFileSync(__dirname + '/templates/' + project._template, 'utf8'));
   return new Handlebars.SafeString(template(project));
 });
 
@@ -115,21 +87,76 @@ Handlebars.registerHelper('limit', function( collection, limit, start ) {
 
 Metalsmith(__dirname)
   .use(sass({ outputStyle: 'compressed' }))
+  .use(msj({
+    key: 'data'
+  }))
+  .use(function (files, metalsmith, done) {
+    var projects = { items: [] },
+      types = {},
+      pattern = new RegExp('content/projects/[^/]*/.*'),
+      item,
+      folders,
+      type;
+
+    if (!('content/projects/config.json' in files)) {
+      console.log('Must provide content/projects/config.json file');
+      done();
+    } else {
+      projects.types = files['content/projects/config.json'].data;
+
+      projects.types.forEach(function(key) {
+        types[key.id] = key;
+      });
+    }
+
+    for (var file in files) {
+      if (pattern.test(file)) {
+        item = files[file].data;
+        folders = file.split('/');
+
+        type = folders[folders.length - 2];
+
+        if (!(type in projects)) {
+          projects[type] = [];
+        }
+
+        item._type = type;
+        item._template = types[type].projectTileTemplate;
+        item.date = new Date(item.date);
+
+        if (item.postUrl) {
+          item._post = '/posts/' + item.postUrl;
+        }
+
+        projects[type].push(item);
+        projects.items.push(item);
+      }
+    }
+
+    // Sort projects most recent first
+    projects.items.sort(function(a, b) {
+      return b.date.getTime()-a.date.getTime();
+    });
+
+    // Populate class name fields. Add 'new' class for newest project
+    for (var i = 0; i < projects.items.length; i++) {
+      projects.items[i]._classNames = projects.items[i]._type;
+
+      if (i == 0) {
+        projects.items[i]._classNames += ' new';
+      }
+    }
+
+    metalsmith.data.projects = projects;
+
+    done();
+  })
+  .use(ignore('content/projects/*'))
   .use(drafts())
   .use(findTemplate(collectionTemplates))
   .use(collections({
     posts: {
       pattern: 'content/posts/*.md',
-      sortBy: 'date',
-      reverse: true
-    },
-    electronics: {
-      pattern: 'content/electronics/*.md',
-      sortBy: 'date',
-      reverse: true
-    },
-    music: {
-      pattern: 'content/music/*.md',
       sortBy: 'date',
       reverse: true
     }
@@ -152,46 +179,6 @@ Metalsmith(__dirname)
         pattern: ':collection/:title',
         relative: false
   }))
-  .use(function (files, metalsmith, done) {
-    var projects = {};
-
-    projects.collections = [
-      {id: 'electronics', name: 'Electronics'},
-    {id: 'music', name: 'Music'}
-    ];
-
-    projects.items = [];
-
-    projects.collections.forEach(function(collection) {
-      metalsmith.data.collections[collection.id].forEach(function(item) {
-        item._collection = collection.id;
-
-        if (item.postUrl) {
-          item._post = '/posts/' + item.postUrl
-        }
-
-        projects.items.push(item);
-      });
-    });
-
-    // Sort projects most recent first
-    projects.items.sort(function(a, b) {
-      return b.date.getTime()-a.date.getTime();
-    });
-
-    // Populate class name fields. Add 'new' class for newest project
-    for (var i = 0; i < projects.items.length; i++) {
-      projects.items[i]._classNames = projects.items[i]._collection;
-
-      if (i == 0) {
-        projects.items[i]._classNames += ' new';
-      }
-    }
-
-    metalsmith.data.projects = projects;
-
-    done();
-  })
   .use(templates('handlebars'))
   .use()
   .destination('./build')

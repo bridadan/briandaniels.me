@@ -1,0 +1,12 @@
+[
+  {
+    "id": "electronics",
+    "name": "Electronics",
+    "projectTileTemplate": "project_tiles/electronics.hbt"
+  },
+  {
+    "id": "music",
+    "name": "Music",
+    "projectTileTemplate": "project_tiles/music.hbt"
+  }
+]

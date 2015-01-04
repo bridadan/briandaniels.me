@@ -2,7 +2,7 @@
 
 <div id="project-filter-buttons" class="center margin-top">
   <button>All</button>
-{{#each projects.collections}}
+{{#each projects.types}}
   <button class="{{id}}">{{name}}</button>
 {{/each}}
 </div>
