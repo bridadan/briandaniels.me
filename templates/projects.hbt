@@ -18,44 +18,4 @@
 {{/each}}
 </div>
 
-<script src="/js/jquery-2.1.3.js"></script>
-<script src="/js/isotope.pkgd.js"></script>
-<script>
-  $('#projects-container').isotope({
-    // options
-    itemSelector: '.item',
-    sortBy: 'original-order',
-    masonry: {
-      columnWidth: '.grid-sizer'
-    }
-  });
-
-  $('#project-filter-buttons > button').click(function() {
-    if ($(this).hasClass('active')) return;
-
-    $(this).siblings().removeClass('active');
-
-    var filterClasses = '';
-    var classString = $(this).attr('class');
-
-    if (classString) {
-
-      var classes = classString.split(' ');
-
-      classes.forEach(function(val, index) {
-        if (!val) return;
-
-        if (index > 0) {
-          filterClasses += ' ';
-        }
-
-        filterClasses += '.' + val;
-      });
-    }
-
-    $('#projects-container').isotope({filter: filterClasses});
-
-    $(this).addClass('active');
-  });
-</script>
 {{> footer}}

@@ -159,10 +159,10 @@ button, input[type=submit] {
     line-height: 3.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 
-    span {
+    div {
       color: $highlight-color;
       text-shadow: 0.1rem 0.1rem $shadow-color;
-      float: left;
+      float: none;
       padding: 0 1rem;
       font-family: 'Roboto Slab', serif;
       font-size: 1.6rem;
@@ -189,12 +189,17 @@ button, input[type=submit] {
 
       ul {
         display: none;
-        float: right;
+        text-align: left;
+        float: none;
         margin: 0;
       }
 
+      &.open > ul {
+        display: block;
+      }
+
       li {
-        display: inline;
+        display: block;
         list-style-type: none;
 
         &.active a, &.active a:hover {
@@ -207,13 +212,15 @@ button, input[type=submit] {
 
 #menu-toggle {
   display: block;
-  float: right;
   cursor: pointer;
   background-image: url('/images/menu.gif');
   background-position: center center;
   background-repeat: no-repeat no-repeat;
   height: 3.5rem;
   width: 3.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .main {
@@ -442,8 +449,21 @@ form {
     display: none;
   }
 
-  #container > header nav ul {
-    display: block;
+  #container > header div {
+    float: left;
+  }
+
+  #container > header nav {
+    text-align: right;
+
+    ul {
+      display: block;
+      float: right;
+    }
+
+    li {
+      display: inline;
+    }
   }
 }
 
