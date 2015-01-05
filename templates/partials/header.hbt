@@ -14,9 +14,9 @@
 <body>
   <div id="container">
     <header class="cf">
-      <span><a href="/index.html">briandaniels.me</a></span>
+      <span><a href="/index.html">Brian<small>Daniels</small></a></span>
       <nav>
-        <img id="menu-toggle" src="/images/menu_blue.png">
+        <button id="menu-toggle"></button>
         <ul>
           <li class="{{nav-active title 'About'}}"><a href="/about">ABOUT</a></li>
           <li class="{{nav-active title 'Resume'}}"><a href="/resume">RESUME</a></li>

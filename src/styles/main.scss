@@ -1,9 +1,9 @@
 $background-color: #314B5B;
 $main-color: #79B7E1;
-$highlight-color: #DB9634;
+$highlight-color: #EFA129;
 $shadow-color: #16405B;
-$nav-color: #429DD4;
 $link-color: #2E81B8;
+$panel-color: #DAE4EA;
 
 html {
   font-size: 16px;
@@ -138,11 +138,9 @@ button, input[type=submit] {
   font-size: inherit;
   font-weight: bold;
   color: #fff;
-  border-radius: 4px;
   background-color: $highlight-color;
   padding: 0.7rem;
-  margin: 0 0.25rem;
-  box-shadow: -4px 4px $shadow-color;
+  margin: 0;
   text-shadow: -0.1rem 0.1rem $shadow-color;
   outline: 0;
   cursor: pointer;
@@ -158,54 +156,67 @@ button, input[type=submit] {
   margin: 0 auto;
 
   > header {
-    background-color: $nav-color;
-    box-shadow: 0px 6px 0px -3px $shadow-color;
     line-height: 3.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 
     span {
+      color: $highlight-color;
+      text-shadow: 0.1rem 0.1rem $shadow-color;
       float: left;
       padding: 0 1rem;
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.6rem;
+      font-weight: bold;
+
+      small {
+        font-weight: normal;
+      }
+    }
+
+    nav {
+      text-align: right;
+
+      a {
+        color: rgba(255,255,255,0.54);
+        text-decoration: none;
+        padding: 1rem;
+
+        &:hover, &:visited:hover, &:focus {
+          background: none;
+          color: rgba(0,0,0,0.54);
+        }
+      }
+
+      ul {
+        display: none;
+        float: right;
+        margin: 0;
+      }
+
+      li {
+        display: inline;
+        list-style-type: none;
+
+        &.active a, &.active a:hover {
+          color: rgba(0,0,0,0.87);
+        }
+      }
     }
   }
 }
 
 #menu-toggle {
-  display: inline;
+  display: block;
+  float: right;
   cursor: pointer;
-}
-
-header nav {
-  text-align: right;
-
-  a {
-    color: rgba(255,255,255,0.54);
-    text-decoration: none;
-    padding: 1rem;
-
-    &:hover, &:visited:hover, &:focus {
-      background: none;
-      color: rgba(0,0,0,0.54);
-    }
-  }
-
-  ul {
-    display: none;
-    float: right;
-    margin: 0;
-  }
-
-  li {
-    display: inline;
-    list-style-type: none;
-
-    &.active a, &.active a:hover {
-      color: rgba(0,0,0,0.87);
-    }
-  }
+  background-image: url('/images/menu.gif');
+  background-position: center center;
+  background-repeat: no-repeat no-repeat;
+  height: 3.5rem;
+  width: 3.5rem;
 }
 
 .main {
-  //max-width: 56rem;
   padding: 0 1rem;
 }
 
@@ -252,7 +263,7 @@ p {
 
 .panel {
   margin: 0.5rem 0;
-  background: #C5D9E6;
+  background: $panel-color;
   box-shadow: -0.2rem 0.2rem $shadow-color;
   padding: 0 1rem;
 }
@@ -330,7 +341,7 @@ article {
 
   section {
     margin: 0.5rem 0;
-    background: #C5D9E6;
+    background: $panel-color;
     box-shadow: -0.2rem 0.2rem $shadow-color;
     padding: 0 1rem;
 
@@ -423,11 +434,15 @@ form {
 }
 
 @media (min-width: 48rem) {
+  .main {
+    padding: 0 5rem;
+  }
+
   #menu-toggle {
     display: none;
   }
 
-  header nav ul {
+  #container > header nav ul {
     display: block;
   }
 }
